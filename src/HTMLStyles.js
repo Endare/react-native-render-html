@@ -198,6 +198,9 @@ function cssToRNStyle (css, styleset, { emSize, ptSize, ignoredStyles, allowedSt
                     const pxSize = parseFloat(value.replace('pt', '')) * ptSize;
                     return [key, pxSize];
                 }
+                if (key === 'display' && ['flex', 'none'].indexOf(value) === -1) {
+                    return [key, 'flex'];
+                }
                 // See if we can convert a 20px to a 20 automagically
                 const numericValue = parseFloat(value.replace('px', ''));
                 if (key !== 'fontWeight' && !isNaN(numericValue)) {
